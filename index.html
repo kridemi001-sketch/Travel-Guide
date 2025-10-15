@@ -1,0 +1,319 @@
+<!doctype html>
+<link rel="stylesheet" href="style.css>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kridemi001 — Travel Stories & Guides</title>
+  <meta name="description" content="Kridemi001 — long-form travel blog with guides, photo galleries, tips and itineraries." />
+ 
+  <style>
+    :root{
+      --bg:White; --card:#0b1220; --muted:#9aa6b2; --accent:#ff7a59; --glass: rgba(255,255,255,0.04);
+      --maxwidth:1200px;
+      color-scheme: light;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: linear-gradient(180deg,#071021 0%, #071421 45%, #071821 100%);
+      color:#e6eef6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      padding:32px 18px;
+      display:flex; justify-content:center;
+    }
+    .container{max-width:var(--maxwidth); width:100%;}header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:28px}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{width:56px;height:56px;background:linear-gradient(135deg,#ffb199,#ff7a59);border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#08121b;font-family:Playfair Display, serif}
+h1.site-title{font-family:Playfair Display, serif;margin:0;font-size:20px}
+p.site-tag{margin:0;color:var(--muted);font-size:13px}
+
+nav{display:flex;gap:12px;align-items:center}
+.nav a{color:var(--muted);text-decoration:none;font-size:14px;padding:8px 12px;border-radius:8px}
+.nav a:hover{background:var(--glass);color:#fff}
+
+.controls{display:flex;gap:8px;align-items:center}
+.btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:10px;color:var(--muted);cursor:pointer}
+.btn:hover{border-color:rgba(255,255,255,0.12);color:#fff}
+
+.layout{display:grid;grid-template-columns:1fr 340px;gap:28px}
+
+/* Hero */
+.hero{background:linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.55)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=1a1d0d1f') center/cover no-repeat;padding:36px;border-radius:14px;display:flex;gap:24px;align-items:center}
+.hero .meta{max-width:760px}
+.eyebrow{font-weight:600;color:var(--accent);font-size:13px;letter-spacing:0.6px}
+.hero h2{font-family:Playfair Display, serif;margin:8px 0;font-size:34px}
+.hero p{color:var(--muted);line-height:1.6}
+.cta-row{margin-top:18px;display:flex;gap:10px}
+.cta{background:var(--accent);color:#08121b;padding:10px 16px;border-radius:10px;font-weight:700;cursor:pointer;border:none}
+
+/* Posts */
+.posts{display:flex;flex-direction:column;gap:22px;margin-top:22px}
+article.post{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;display:grid;grid-template-columns:220px 1fr;gap:18px;align-items:start}
+.post .thumb{width:220px;height:140px;border-radius:10px;overflow:hidden}
+.post .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.post h3{margin:0;font-size:20px}
+.post .meta-row{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:13px;margin-top:8px}
+.post p{color:var(--muted);margin-top:10px;line-height:1.6}
+.tags{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.tag{font-size:12px;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.02);color:var(--muted)}
+
+/* Sidebar */
+aside{position:relative}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:16px;border-radius:12px;margin-bottom:18px}
+.about h4{margin:0 0 8px 0;font-size:16px}
+.subscribe input{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#fff}
+.subscribe button{margin-top:10px;width:100%;padding:10px;border-radius:8px;border:none;background:var(--accent);color:#08121b;font-weight:700}
+
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.gallery img{width:100%;height:76px;object-fit:cover;border-radius:6px;cursor:pointer;display:block}
+
+footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center}
+
+/* responsive */
+@media (max-width:980px){
+  .layout{grid-template-columns:1fr}
+  .posts article{grid-template-columns:1fr}
+  .post .thumb{width:100%;height:220px}
+  .gallery{grid-template-columns:repeat(4,1fr)}
+}
+
+/* Light theme support via .light on body */
+body.light{--bg:#f6f7fb;--card:#ffffff;--muted:#566174;--accent:#ff6b3c;color-scheme:light;color:#08121b}
+
+/* Simple lightbox */
+.lightbox{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.7);z-index:9999;opacity:0;pointer-events:none;transition:all .18s}
+.lightbox.open{opacity:1;pointer-events:auto}
+.lightbox img{max-width:92%;max-height:86%;border-radius:8px}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">KDM</div>
+        <div>
+          <h1 class="site-title">Krishna Travels</h1>
+          <p class="site-tag">Long reads, photography & practical guides</p>
+        </div>
+      </div><nav class="nav" aria-label="Main Navigation">
+    <a href="#posts">Home</a>
+    <a href="#guides">Guides</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <div class="controls">
+    <button class="btn" id="themeToggle" title="Toggle theme">Toggle</button>
+    <button class="btn" id="menuBtn" aria-expanded="false">Menu</button>
+  </div>
+</header>
+
+<main class="layout">
+  <div>
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="meta">
+        <div class="eyebrow">Latest: Island Hopping in the Azores</div>
+        <h2 id="heroTitle">Hello Everyo e In this website i will show you how i planned my Trips,Where I wnat to go and where i Go,which places should you stay,eat and also sightseeing.All the information about travelling in some place i will give you.</h2>
+        <p>From Kashmir to Kanyakumari.From Gujarat To Anrunachal Pradesh,From Beaches in the sunshine to Desert of scorching heat,From The food to stay,Everything in one Website .</p>
+        <div class="cta-row">
+          <button class="cta" onclick="document.getElementById('posts').scrollIntoView({behavior:'smooth'})">Read the feature</button>
+          <button class="btn" onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'})">See photos</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="posts" class="posts" aria-label="Posts">
+
+      <!-- Post 1 -->
+      <article class="post">
+        <div class="thumb"><img src="K.jpg"=1000&auto=format&fit=crop" alt="Kashmir"></img>
+        </div>
+        <div>
+          <h3>Kashmir:Union Territory :Dream place</h3>
+          <div class="meta-row"><span>By K.D.Midya</span><span>•</span><span>Oct 5, 2025</span><span>•</span></div>
+          <p>Although I didn't Go to Kashmir,But i Know how beatiful is that place.It's like the heaven on the Earth.According to me It is one of the best place for sightseeing.The most popular places here are The Gulmarg,Pahalgam,Dal lake.You can stay at lalit grand palace,Srinagar.And for fooding you can surely visit Mughal Darbar.</p>
+          <div class="tags"><span class="tag">#Kashmir</span><span class="tag">#Hiking</span><span class="tag">#Food</span></div>
+        </div>
+      </article>
+
+      <!-- Post 2 -->
+      <article class="post">
+        <div class="thumb"><img src="N.jpg"=-1470071459604-3b5ec3a7fe05?q=80&w=1000&auto=format&fit=crop" alt="City of Nainital"></div>
+        <div>
+          <h3>48 Hours stay in Nainital,Uttarakhand</h3>
+          <div class="meta-row"></div>
+          <p>Nainital-its a major spot in Uttarakhand,Unless haridwar.We went there last year and aa my Father is a defence personnel we stayed at Army Guest House in Kathgodam.Otherwise there are many hotels and dorminatories in Nainital,But they are slightly expensive.The best way to reach nainital is by train.At first get train to kathgodam and then take a cab to Nainital.The best spot is the naini lake,also the word "tal" is also refers to lake.After you should go by ropeway to the high mountain to see himalaya and also there you can visit Eco cave and other attractions.</p>
+          <div class="tags"><span class="tag">#Asia</span><span class="tag">#CityGuide</span>
+          <span class="tag">#Mountains</span></div>
+        </div>
+      </article>
+
+      <!-- Post 3 (long form sample) -->
+      <article class="post">
+        <div class="thumb"><img src="A.jpg"=80&w=1000&auto=format&fit=crop" alt="Golden Temple"></div>
+        <div>
+          <h3>A Guide for Punjab:The Best Place for ME!</h3>
+          <div class="meta-row"><span>By K.D.Midya</span><span>•</span><span>Oct 10, 2025</span><span>•</span></div>
+          <p>This Guide will be best for me as i am very much familiar with this place,all my childhood went in Punjab.Well the main attraction in Punjab is Amritsar:Golden Temple,Attari-Waggah(Indo-Pak)border,jallianwala bagh etc.You can eat in of course in The golden temple "The largest langar is held over there"</p>
+          <div class="tags"><span class="tag">#Punjab</span><span class="tag">#Amritsar</span><span class="tag">#Golden Temple</span></div>
+        </div>
+      </article>
+
+      <!-- Long-form excerpt to make page 'long' -->
+      <article class="post" aria-labelledby="longform">
+        <div class="thumb"><img src="D.jpg"=80&w=1000&auto=format&fit=crop" alt="Decision Making"></div>
+        <div>
+    
+
+          <h3>Some decisions that save time</h3>
+          <p>Pack light
+→ Carrying less means faster movement through stations, airports, and cabs.
+Book trains/buses online in advance
+→ Use IRCTC, RedBus, or MakeMyTrip to avoid last-minute ticket lines.
+Choose morning flights/trains
+→ Less likely to be delayed and helps you reach early to explore more.
+Book local transport online
+→ Use Ola, Uber, or Rapido instead of bargaining for rickshaws.
+Eat where locals eat
+→ Saves time (and money) by avoiding tourist traps and long waits.
+Plan visits by area
+→ Group nearby attractions on the same day to reduce travel time.
+Avoid peak hours in cities
+→ Big cities like Delhi, Mumbai, or Bangalore have heavy rush between 8–10 AM and 5–8 PM.</p>
+
+          <h4>Packing list (essentials, not excess)</h4>
+          <ul>
+            <li>Valid I'd</li>
+            <li>Quick-dry clothes, one smart outfit for evenings</li>
+            <li>Small first-aid and blister kit</li>
+            <li>Portable battery and a compact travel towel</li>
+            <li>Copies of important documents and a small stash of local cash</li>
+            <li>Small and Comfortable backpack</li>
+          </ul>
+
+          <h4>Transportation</h4>
+          <p>Go through trains as they might no be comfortable but is cheaper is well connected to all major and suburban sections.</p>
+
+          <h4>Where to eat and how to order</h4>
+          <p>Seek food market stalls and family-run tavernas for the most authentic meal at a fraction of tourist prices. Ask for the "catch of the day" or the house special — in many places these are the most affordable and freshly prepared options.</p>
+
+          <div class="tags"><span class="tag">#Guide</span><span class="tag">#India</span><span class="tag">#Tips</span></div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Small tips / newsletter -->
+    <section class="card" style="margin-top:18px">
+      <h4>Latest tips</h4>
+      <ol style="color:var(--muted)">
+        <li>Book trains early — local discounts apply.</li>
+        <li>Carry a reusable water bottle; many places have free refill stations.</li>
+        <li>Learn a few phrases — even a greeting goes a long way.</li>
+      </ol>
+    </section>
+
+  </div>
+
+  <aside>
+    <div class="card about">
+      <h4>About Kridemi001 Travels</h4>
+      <p style="color:var(--muted)">A small editorial project focused on long-form travel writing, photography, and human-first itineraries. We value slow travel, local voices and honest budgets.</p>
+    </div>
+
+    <div class="card subscribe">
+      <h4>Login</h4>
+      <p style="color:var(--muted)">Weekly digest — itineraries, deals, and behind-the-scenes notes.</p>
+      <input type="email" placeholder="Your email" id="emailInput" />
+      <button id="subscribeBtn">Subscribe</button>
+    </div>
+
+    <div class="card">
+      <h4>Explore the gallery</h4>
+      <div id="gallery" class="gallery">
+        <img data-large="K.jpg"=80&w=1600&auto=format&fit=crop" src="K.jpg"=80&w=400&auto=format&fit=crop" alt="gallery1">
+        <img data-large src="N.jpg"1600&auto=format&fit=crop" <img src="T.jpg" alt="gallery2">
+        <img data-large="T.jpg" src="T.jpg"=80&w=400&auto=format&fit=crop" alt="gallery3">
+        <img data-large="A.jpg"=80&w=1600&auto=format&fit=crop" src="A.jpg"=80&w=400&auto=format&fit=crop" alt="gallery4">
+        <img data-large="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1600&auto=format&fit=crop" src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=400&auto=format&fit=crop" alt="gallery5">
+        <img data-large="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1600&auto=format&fit=crop" src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=400&auto=format&fit=crop" alt="gallery6">
+      </div>
+    </div>
+
+    <div class="card">
+      <h4>Categories</h4>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+        <a class="tag" href="#">Adventure</a>
+        <a class="tag" href="#">City Guides</a>
+        <a class="tag" href="#">Food & Drink</a>
+        <a class="tag" href="#">Photo Essays</a>
+      </div>
+    </div>
+
+  </aside>
+</main>
+
+<footer>
+  <p>© 2025 Krishna Travels · Built with ❤️ · Designed for slow travel</p>
+</footer>
+
+<!-- lightbox container -->
+<div id="lightbox" class="lightbox" aria-hidden="true"><img id="lightboxImg" src="" alt="" /></div>
+
+  </div>  <script>
+    // Theme toggle (light/dark) — stores preference in localStorage
+    const themeToggle = document.getElementById('themeToggle');
+    function applyTheme(theme){
+      if(theme === 'light') document.body.classList.add('light'); else document.body.classList.remove('light');
+      localStorage.setItem('wl-theme', theme);
+    }
+    themeToggle.addEventListener('click', ()=>{
+      const isLight = document.body.classList.contains('light');
+      applyTheme(isLight ? 'dark' : 'light');
+    });
+    // Initialize
+    (function(){
+      const saved = localStorage.getItem('wl-theme');
+      if(saved) applyTheme(saved);
+    })();
+
+    // Simple gallery lightbox
+    const gallery = document.getElementById('gallery');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    gallery.addEventListener('click', (e)=>{
+      if(e.target.tagName !== 'IMG') return;
+      const src = e.target.getAttribute('data-large') || e.target.src;
+      lightboxImg.src = src;
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden','false');
+    });
+    lightbox.addEventListener('click', ()=>{lightbox.classList.remove('open'); lightbox.setAttribute('aria-hidden','true');});
+
+    // Simple subscribe simulation
+    document.getElementById('subscribeBtn').addEventListener('click', ()=>{
+      const email = document.getElementById('emailInput').value.trim();
+      if(!email || !email.includes('@')){
+        alert('Please enter a valid email.'); return;
+      }
+      // In a real site, POST to your backend. Here we confirm locally.
+      alert('Thanks! You\'re subscribed — (demo).');
+      document.getElementById('emailInput').value='';
+    });
+
+    // Responsive menu (basic)
+    const menuBtn = document.getElementById('menuBtn');
+    menuBtn.addEventListener('click', ()=>{
+      const nav = document.querySelector('nav.nav');
+      const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+      nav.style.display = expanded ? '' : 'flex';
+    });
+
+    // Accessibility: close lightbox with ESC
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape'){ lightbox.classList.remove('open'); lightbox.setAttribute('aria-hidden','true');}});
+
+  </script></body>
+</html>
